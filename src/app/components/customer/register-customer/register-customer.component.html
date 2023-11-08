@@ -1,0 +1,54 @@
+<div class="well" style="margin: 6px;">
+  <form #formCustomer="ngForm">
+    <h1>Novo Cliente</h1>
+
+    <div class="form-group">
+      <label for="firstName">Primeiro nome:</label>
+      <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="customer.firstName" #firstName="ngModel" minlength="2" required>
+      <div *ngIf="firstName.errors && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+        <div [hidden]="!firstName.errors['required']">
+          Digite o primeiro nome.
+        </div>
+        <div [hidden]="!firstName.errors['minlength']">
+          O nome deve conter pelo menos 2 caracteres.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="secondName">Segundo nome:</label>
+      <input type="text" class="form-control" id="secondName" name="secondName" [(ngModel)]="customer.secondName" #secondName="ngModel" minlength="2" required>
+      <div *ngIf="secondName.errors && (secondName.dirty || secondName.touched)" class="alert alert-danger">
+        <div [hidden]="!secondName.errors['required']">
+          Digite o segundo nome.
+        </div>
+        <div [hidden]="!secondName.errors['minlength']">
+          O nome deve conter pelo menos 2 caracteres.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="cpf">CPF:</label>
+      <input type="text" class="form-control" id="cpf" name="cpf" [(ngModel)]="customer.cpf" #cpf="ngModel" minlength="11" required>
+      <div *ngIf="cpf.errors && (cpf.dirty || cpf.touched)" class="alert alert-danger">
+        <div [hidden]="!cpf.errors['required']">
+          Digite o CPF.
+        </div>
+        <div [hidden]="!cpf.errors['minlength']">
+         cpf deve conter 11 caracters
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button type="button" class="btn card-body-budeg" (click)="salvar()" [disabled]="!formCustomer.form.valid" style="color:white;">
+        <i *ngIf="!loading" class="fa fa-save" aria-hidden="true"></i> 
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> SALVAR
+      </button>
+
+      <a [routerLink]="['/customer/list']" class="btn card-body-budeg" style="color:white; background-color: #ff5a5e;">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
+      </a>
+    </div>
+  </form>
+</div>
